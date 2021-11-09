@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
-import { BrowserView, MobileView } from "react-device-detect";
+import { FaGithubSquare } from "react-icons/fa";
+import { BrowserView, MobileView, TabletView } from "react-device-detect";
 
 const ProjectModal = ({ selectedId, setSelectedId, project }) => {
   const modalRef = useRef();
@@ -56,6 +56,7 @@ const ProjectModal = ({ selectedId, setSelectedId, project }) => {
                 />
               </ProjectVideo>
             </BrowserView>
+
             <MobileView>
               <ProjectImg src={project.img} alt={project.title}></ProjectImg>
             </MobileView>
@@ -86,8 +87,8 @@ const Background = styled(motion.div)`
 
 const ProjectVideo = styled(motion.video)`
   width: 60rem;
-  @media screen and (max-width: 1000px) {
-    width: 40rem;
+  @media screen and (max-width: 1100px) {
+    width: 50rem;
   }
   @media screen and (max-width: 700px) {
     width: 30rem;
@@ -97,7 +98,7 @@ const ProjectVideo = styled(motion.video)`
   }
 `;
 
-const ProjectImg = styled(motion.img)`
+const ProjectImg = styled.img`
   width: 60rem;
   @media screen and (max-width: 1000px) {
     width: 40rem;
