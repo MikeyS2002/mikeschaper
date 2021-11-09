@@ -11,6 +11,16 @@ import javascript from "./img/javascript2.png";
 import asp from "./img/asp.png";
 import html from "./img/html.png";
 
+import game from "./img/game.png";
+import portfolio from "./img/portfolio.png";
+import scissors from "./img/scissors.png";
+import music from "./img/music.png";
+
+import wavey from "./videos/Wavey.mp4";
+import rps from "./videos/RPS.mp4";
+import ignite from "./videos/Ignite.mp4";
+import mikeschaper from "./videos/MikeSchaper.mp4";
+
 const calculate_age = (dob) => {
   var diff_ms = Date.now() - dob.getTime();
   var age_dt = new Date(diff_ms);
@@ -93,7 +103,8 @@ export const AboutMeState = () => {
     {
       id: 2,
       title: "Study",
-      description: "My first study was 1 year of ICT management at Horizon College. In that year I realized I love programming! So I'm currently studying application development. In the future, I want to go for my bachelor's degree. ",
+      description:
+        "My first study was 1 year of ICT management at Horizon College. In that year I realized I love programming! So I'm currently studying application development. In the future, I want to go for my bachelor's degree. ",
     },
     {
       id: 3,
@@ -103,7 +114,53 @@ export const AboutMeState = () => {
     {
       id: 4,
       title: "Internship",
-      description: "In the second year of my vocational college, I had to do an internship. So I had an internship for 20 weeks at the company DiStudios. Here's where I got in touch with React for the first time. In that internship, I made my first react native app through a course!",
+      description:
+        "In the second year of my vocational college, I had to do an internship. So I had an internship for 20 weeks at the company DiStudios. Here's where I got in touch with React for the first time. In that internship, I made my first react native app through a course!",
+    },
+  ];
+};
+
+export const ProjectState = () => {
+  return [
+    {
+      id: uuidv4(),
+      title: "Rock paper scissors",
+      icon: scissors,
+      description:
+        "The project replicates the game that is used to draw lots. I used animations and disabled the buttons to play when the animation is playing. I made a small score system that stores the score in the local storage.",
+      language: "Vanilla JavaScript",
+      video: rps,
+      git: "https://github.com/MikeyS2002/rock-paper-scissors",
+    },
+    {
+      id: uuidv4(),
+      title: "Portfolio",
+      icon: portfolio,
+      description:
+        "The project is a portfolio of me. To display what projects I did, what courses I followed, and what my experiences are. This site is made with the Javascript library React. I styled it with the 3th party library styled components.",
+      language: "React",
+      video: mikeschaper,
+      git: "https://github.com/MikeyS2002/mikeschaper",
+    },
+    {
+      id: uuidv4(),
+      title: "Wavey",
+      icon: music,
+      description:
+        "The project is a music player. This was my first React project made by following Dev Ed's course. I styled it with SASS.",
+      language: "React",
+      video: wavey,
+      git: "https://github.com/MikeyS2002/Wavey",
+    },
+    {
+      id: uuidv4(),
+      title: "Ignite",
+      icon: game,
+      description:
+        "The Project replicates IMBD but made for games. Here is where I got introduced to working with API and redux by the course of Dev Ed.",
+      language: "React / Redux",
+      video: ignite,
+      git: "https://github.com/MikeyS2002/ignite",
     },
   ];
 };

@@ -160,9 +160,7 @@ const JavascriptImg = styled(motion.img)`
     right: -5rem;
   }
   @media screen and (max-width: 500px) {
-    top: 1rem;
-    right: -3rem;
-    width: 210px;
+    display: none;
   }
 `;
 

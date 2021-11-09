@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-import Modal from "./Modal";
+import CourseModal from "./CourseModal";
 import { CourseState } from "../util";
 
 const Course = () => {
@@ -15,24 +15,22 @@ const Course = () => {
       <hr />
       <CoursesGrid>
         {courses.map((course) => (
-          <StyledCourse
+          <CourseWrapper
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.97 }}
             key={course.id}
             onClick={() => setSelectedId(course.id)}
           >
-            <CourseWrapper>
-              <img src={course.logo} alt={course.alt} />
-              <CourseContent>
-                <h3>{course.title}</h3>
-                <p>{course.time}</p>
-              </CourseContent>
-            </CourseWrapper>
-          </StyledCourse>
+            <img src={course.logo} alt={course.alt} />
+            <CourseContent>
+              <h3>{course.title}</h3>
+              <p>{course.time}</p>
+            </CourseContent>
+          </CourseWrapper>
         ))}
       </CoursesGrid>
       {courses.map((course) => (
-        <Modal
+        <CourseModal
           key={course.id}
           selectedId={selectedId}
           setSelectedId={setSelectedId}
@@ -64,29 +62,26 @@ const CoursesGrid = styled.div`
   }
 `;
 
-const StyledCourse = styled(motion.div)`
-  color: white;
-  box-shadow: 0px 5px 15px rgba(26, 26, 26, 0.4);
-  border-radius: 1rem;
-  padding: 1.5rem;
-  h3 {
-    font-size: 1.3rem;
-  }
-  p {
-    font-size: 0.9rem;
-  }
-  :hover {
-    cursor: pointer;
-  }
-`;
-
-const CourseWrapper = styled.div`
+const CourseWrapper = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
   img {
     height: 3rem;
     padding-right: 1rem;
+  }
+  color: white;
+  box-shadow: 0px 5px 15px rgba(26, 26, 26, 0.4);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  h3 {
+    font-size: 1.5rem;
+  }
+  p {
+    font-size: 0.9rem;
+  }
+  :hover {
+    cursor: pointer;
   }
 `;
 

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdClose } from "react-icons/md";
 
-const Modal = ({ selectedId, setSelectedId, course }) => {
+const CourseModal = ({ selectedId, setSelectedId, course }) => {
   const modalRef = useRef();
 
   const closeModal = (e) => {
@@ -71,7 +71,7 @@ const Background = styled(motion.div)`
   width: 100%;
   height: 100vh;
   overflow-y: scroll;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.6);
   position: fixed;
   top: 0;
   left: 0;
@@ -159,4 +159,4 @@ const CloseModalButton = styled(MdClose)`
   color: #2c2f33;
 `;
 
-export default Modal;
+export default CourseModal;

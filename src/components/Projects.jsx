@@ -1,42 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { BiLinkExternal } from "react-icons/bi";
 
-import heavenlyhealings from "../img/heavenlyhealings.png";
+import ProjectModal from "./ProjectModal";
+import { ProjectState } from "../util";
 
 const Projects = () => {
+  const [projects, setProjects] = useState(ProjectState());
+  const [selectedId, setSelectedId] = useState(null);
+
   return (
     <>
       <StyledProjects id="projects">
         <h2>Projects I did</h2>
         <hr />
+
         <ProjectGrid>
-          <Project>
-            <div>
-              <img src={heavenlyhealings} alt="Heavenly Healings" />
+          {projects.map((project) => (
+            <ProjectWrapper
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              key={project.id}
+              onClick={() => setSelectedId(project.id)}
+            >
               <ProjectContent>
-                <h3>Heavenly Healings</h3>
-                <hr />
-                <p>
-                  A site to display information for the business Heavenly
-                  Healings. I made it with completely with React, and styled is
-                  with Sass. I use multiple 3th party libraries to give the
-                  finishing touch wihout needing a backend.
-                </p>
-                <SourceCode
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://www.heavenlyhealings.nl/"
-                >
-                  <BiLinkExternal />
-                </SourceCode>
+                <ProjectHeader>
+                  <img src={project.icon} alt={project.title} />
+                  <h3>{project.title}</h3>
+                </ProjectHeader>
+                <p>{project.description}</p>
+                <p className="language">{project.language}</p>
               </ProjectContent>
-            </div>
-          </Project>
+            </ProjectWrapper>
+          ))}
         </ProjectGrid>
+        {projects.map((project) => (
+          <ProjectModal
+            key={project.id}
+            selectedId={selectedId}
+            setSelectedId={setSelectedId}
+            project={project}
+          />
+        ))}
       </StyledProjects>
     </>
   );
@@ -51,46 +56,50 @@ const StyledProjects = styled.section`
 
 const ProjectGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 0fr));
-  @media screen and (max-width: 800px) {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  }
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-column-gap: 3rem;
   grid-row-gap: 3rem;
+  @media screen and (max-width: 800px) {
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+  }
+  @media screen and (min-width: 1450px) {
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  }
 `;
 
-const Project = styled.div`
-  border-radius: 0rem 0 1rem 1rem;
+const ProjectWrapper = styled(motion.div)`
+  color: white;
   box-shadow: 0px 5px 15px rgba(26, 26, 26, 0.4);
-  img {
-    width: 100%;
-  }
+  border-radius: 1rem;
+  padding: 1.5rem;
   h3 {
-    text-align: center;
-    margin: 1rem;
+    font-size: 1.5rem;
   }
-  hr {
-    margin: auto;
-    background: #f0db4f;
-    margin-bottom: 1rem;
-  }
-  p {
-    font-size: 1.2rem;
-    @media screen and (max-width: 500px) {
-      font-size: 1.1rem;
-    }
+
+  :hover {
+    cursor: pointer;
   }
 `;
 
 const ProjectContent = styled.div`
-  padding: 0 2rem;
+  .language {
+    padding-top: 0.5rem;
+    font-size: 0.9rem;
+  }
 `;
 
-const SourceCode = styled(motion.a)`
-  margin: 2rem 2rem;
-  color: white;
-  font-size: 2rem;
-  float: right;
+const ProjectHeader = styled.div`
+  display: flex;
+  h3 {
+    padding-bottom: 0.5rem;
+    flex-direction: row;
+  }
+  img {
+    width: 1.7rem;
+    height: 1.7rem;
+    margin-right: 1rem;
+  }
 `;
 
 export default Projects;
