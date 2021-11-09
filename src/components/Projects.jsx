@@ -63,6 +63,9 @@ const ProjectGrid = styled.div`
     grid-column-gap: 1rem;
     grid-row-gap: 1rem;
   }
+  @media screen and (max-width: 400px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
   @media screen and (min-width: 1450px) {
     grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   }

@@ -73,6 +73,15 @@ const Background = styled(motion.div)`
 
 const ProjectVideo = styled(motion.video)`
   width: 60rem;
+  @media screen and (max-width: 1000px) {
+    width: 40rem;
+  }
+  @media screen and (max-width: 700px) {
+    width: 30rem;
+  }
+  @media screen and (max-width: 500px) {
+    width: 23rem;
+  }
 `;
 
 const Github = styled(FaGithubSquare)`
@@ -85,6 +94,12 @@ const Github = styled(FaGithubSquare)`
   padding: 0;
   z-index: 10;
   color: white;
+  @media screen and (max-width: 500px) {
+    width: 3rem;
+    height: 3rem;
+    top: 1rem;
+    right: 1rem;
+  }
 `;
 
 export default ProjectModal;
