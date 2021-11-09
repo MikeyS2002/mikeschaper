@@ -20,6 +20,10 @@ import wavey from "./videos/Wavey.mp4";
 import rps from "./videos/RPS.mp4";
 import ignite from "./videos/Ignite.mp4";
 import mikeschaper from "./videos/MikeSchaper.mp4";
+import waveyImg from "./img/Wavey.png";
+import rpsImg from "./img/RPS.png";
+import igniteImg from "./img/Ignite.png";
+import mikeschaperImg from "./img/MikeSchaper.png";
 
 const calculate_age = (dob) => {
   var diff_ms = Date.now() - dob.getTime();
@@ -127,9 +131,10 @@ export const ProjectState = () => {
       title: "Rock paper scissors",
       icon: scissors,
       description:
-        "The project replicates the game that is used to draw lots. I used animations and disabled the buttons to play when the animation is playing. I made a small score system that stores the score in the local storage.",
+        "The project replicates the game that is used to draw lots. I used animations and disabled the buttons to see that you've chosen. I made a small score system that stores the score in the local storage.",
       language: "Vanilla JavaScript",
       video: rps,
+      img: rpsImg,
       git: "https://github.com/MikeyS2002/rock-paper-scissors",
     },
     {
@@ -140,6 +145,7 @@ export const ProjectState = () => {
         "The project is a portfolio of me. To display what projects I did, what courses I followed, and what my experiences are. This site is made with the Javascript library React. I styled it with the 3th party library styled components.",
       language: "React",
       video: mikeschaper,
+      img: mikeschaperImg,
       git: "https://github.com/MikeyS2002/mikeschaper",
     },
     {
@@ -150,6 +156,7 @@ export const ProjectState = () => {
         "The project is a music player. This was my first React project made by following Dev Ed's course. I styled it with SASS.",
       language: "React",
       video: wavey,
+      img: waveyImg,
       git: "https://github.com/MikeyS2002/Wavey",
     },
     {
@@ -160,6 +167,7 @@ export const ProjectState = () => {
         "The Project replicates IMBD but made for games. Here is where I got introduced to working with API and redux by the course of Dev Ed.",
       language: "React / Redux",
       video: ignite,
+      img: igniteImg,
       git: "https://github.com/MikeyS2002/ignite",
     },
   ];

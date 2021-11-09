@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithubSquare, FaLinkedin } from "react-icons/fa";
+import { BrowserView, MobileView } from "react-device-detect";
 
 const ProjectModal = ({ selectedId, setSelectedId, project }) => {
   const modalRef = useRef();
@@ -27,32 +28,44 @@ const ProjectModal = ({ selectedId, setSelectedId, project }) => {
   }, [keyPress]);
 
   return (
-    <AnimatePresence>
-      {selectedId === project.id && (
-        <Background
-          ref={modalRef}
-          onClick={closeModal}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, transition: { duration: 0.5 } }}
-          exit={{ opacity: 0 }}
-        >
-          <ProjectVideo
-            autoPlay
-            loop
-            initial={{ y: -500 }}
-            animate={{ y: 0, transition: { duration: 0.5 } }}
-            exit={{ y: -500, transition: { duration: 0.5 } }}
-            selectedId={selectedId}
+    <>
+      <AnimatePresence>
+        {selectedId === project.id && (
+          <Background
+            ref={modalRef}
+            onClick={closeModal}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 0.5 } }}
+            exit={{ opacity: 0 }}
           >
-            <source src={project.video} type="video/mp4" alt={project.title} />
-            <a href={project.git}>(Github)</a>
-          </ProjectVideo>
-          <a target="_blank" rel="noreferrer" href={project.git}>
-            <Github />
-          </a>
-        </Background>
-      )}
-    </AnimatePresence>
+            <BrowserView>
+              <ProjectVideo
+                loop
+                playsInline
+                autoPlay
+                webkit-playsInline
+                initial={{ y: -500 }}
+                animate={{ y: 0, transition: { duration: 0.5 } }}
+                exit={{ y: -500, transition: { duration: 0.5 } }}
+                selectedId={selectedId}
+              >
+                <source
+                  src={project.video}
+                  type="video/mp4"
+                  alt={project.title}
+                />
+              </ProjectVideo>
+            </BrowserView>
+            <MobileView>
+              <ProjectImg src={project.img} alt={project.title}></ProjectImg>
+            </MobileView>
+            <a target="_blank" rel="noreferrer" href={project.git}>
+              <Github />
+            </a>
+          </Background>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
@@ -72,6 +85,19 @@ const Background = styled(motion.div)`
 `;
 
 const ProjectVideo = styled(motion.video)`
+  width: 60rem;
+  @media screen and (max-width: 1000px) {
+    width: 40rem;
+  }
+  @media screen and (max-width: 700px) {
+    width: 30rem;
+  }
+  @media screen and (max-width: 500px) {
+    width: 23rem;
+  }
+`;
+
+const ProjectImg = styled(motion.img)`
   width: 60rem;
   @media screen and (max-width: 1000px) {
     width: 40rem;
